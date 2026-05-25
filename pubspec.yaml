@@ -2,7 +2,7 @@ name: flutter_artist_face_demo
 description: "FlutterArtist Face Demo"
 publish_to: 'none'
 version: 0.9.0
-resolution: workspace
+#resolution: workspace
 homepage: https://o7planning.github.io
 
 environment:
