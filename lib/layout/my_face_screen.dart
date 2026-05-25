@@ -10,10 +10,46 @@ abstract class MyFaceScreen extends FaceScreen {
 
   @override
   FaceStyle buildStyle(BuildContext context) {
-    // Customizing the theme using a single seed color matching FlutterArtist ecosystem
-    return FaceStyle.simple(
-      Colors.indigo,
-      brightness: Theme.of(context).brightness,
+    const Color navyBaseDarkSidebar = Color(0xFF1E2541);
+    const Color navyBaseDarkTopbar = Color(0xFF1E2531);
+    const Color navyBorderColor = Color(0xFF2E375E);
+    const Color electricActive = Color(0xFF4361EE);
+
+    return const FaceStyle(
+      scaffoldBackground: Color(0xFFF4F6FA),
+      topbarStyle: TopbarStyle(
+        backgroundColor: navyBaseDarkTopbar,
+        iconColor: Colors.white, // Pure white-silver crisp action icons
+        textColor: Colors.white, // Crisp bold title display
+      ),
+
+      sidebarStyle: SidebarStyle(
+        backgroundColor: navyBaseDarkSidebar,
+        expandedWidth: 240,
+        collapsedWidth: 60,
+        groupPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        groupTitleStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 11,
+          color: Color(
+            0xFF94A3B8,
+          ), // Slate gray-blue text for non-intrusive section titles
+          letterSpacing: 1.1,
+        ),
+        groupSubtitleStyle: TextStyle(color: Color(0xFF64748B), fontSize: 10),
+        itemPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        itemBorderRadius: 8.0,
+        itemIconColor: Color(0xFF94A3B8),
+        // Soft muted icons when unselected
+        itemTextColor: Color(0xFFE2E8F0),
+        // Off-white readable text labels
+        // Interaction feedback states inside the dark panel
+        itemHoverColor: Color(0x13FFFFFF),
+        // Elegant translucent ghost overlay
+        itemSelectedColor: Color(
+          0xFF2F3860,
+        ), // Solid visible matching block for active routes
+      ),
     );
   }
 

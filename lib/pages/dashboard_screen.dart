@@ -16,38 +16,40 @@ class DashboardScreen extends MyFaceScreen {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Welcome back, Artist!',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: effectiveStyle.sidebarStyle.itemTextColor,
+              // Professional deep slate text color for perfect canvas contrast
+              color: Color(0xFF0F172A),
             ),
           ),
           const SizedBox(height: 20),
           Expanded(
             child: GridView.count(
+              // Handles screen layout responsiveness beautifully based on width constraints
               crossAxisCount: MediaQuery.of(context).size.width > 800 ? 3 : 1,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
+              childAspectRatio: MediaQuery.of(context).size.width > 1200
+                  ? 1.3
+                  : 1.1,
               children: [
                 _buildDemoCard(
-                  'Total Widgets',
-                  '142',
-                  Icons.widgets_outlined,
-                  effectiveStyle,
+                  title: 'Total Widgets',
+                  value: '142',
+                  icon: Icons.widgets_outlined,
                 ),
                 _buildDemoCard(
-                  'Active Users',
-                  '1,204',
-                  Icons.people_alt_outlined,
-                  effectiveStyle,
+                  title: 'Active Users',
+                  value: '1,204',
+                  icon: Icons.people_alt_outlined,
                 ),
                 _buildDemoCard(
-                  'Performance Rate',
-                  '99.8%',
-                  Icons.speed_rounded,
-                  effectiveStyle,
+                  title: 'Performance Rate',
+                  value: '99.8%',
+                  icon: Icons.speed_rounded,
                 ),
               ],
             ),
@@ -57,47 +59,45 @@ class DashboardScreen extends MyFaceScreen {
     );
   }
 
-  Widget _buildDemoCard(
-    String title,
-    String value,
-    IconData icon,
-    FaceStyle style,
-  ) {
+  Widget _buildDemoCard({
+    required String title,
+    required String value,
+    required IconData icon,
+  }) {
     return Card(
       elevation: 0,
-      color: style.sidebarStyle.backgroundColor.withAlpha(
-        (255.0 * 0.5).round(),
-      ),
+      color: Colors.white,
+      // Pure white surface to pop out elegantly on the light slate canvas
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: Colors.black12),
+        side: const BorderSide(
+          color: Color(0xFFE2E8F0),
+        ), // Subtle high-quality border line
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 32,
-              color: style.sidebarStyle.groupTitleStyle.color,
-            ),
-            const SizedBox(height: 12),
+            // Electric blue brand accent color for active indicators
+            Icon(icon, size: 32, color: const Color(0xFF4361EE)),
+            const SizedBox(height: 16),
             Text(
               title,
               style: TextStyle(
                 fontSize: 14,
-                color: style.sidebarStyle.itemTextColor.withValues(alpha: 0.6),
+                color: const Color(0xFF64748B), // Muted secondary text
+                fontWeight: FontWeight.normal,
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
             Text(
               value,
-              style: TextStyle(
-                fontSize: 28,
+              style: const TextStyle(
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: style.sidebarStyle.itemTextColor,
+                color: Color(0xFF0F172A), // Deep primary typography
               ),
             ),
           ],
